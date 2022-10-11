@@ -1,6 +1,7 @@
 package com.example.countries.saved_countries_adesso;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +17,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.countries.R;
+import com.example.countries.details_activity_adesso.CountryDetailActivity;
+import com.example.countries.retrofit_adesso.Country;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SavedCountriesRvAdapter extends RecyclerView.Adapter<SavedCountriesRvAdapter.CardViewObjectHolder> {
     private Context mContext;
-    private List<String> countryList = new ArrayList<String>();
+    private List<Country> countryList = new ArrayList<Country>();
 
-    public SavedCountriesRvAdapter(Context mContext,List<String> countryList) {
+    public SavedCountriesRvAdapter(Context mContext,List<Country> countryList) {
         this.countryList = countryList;
         this.mContext = mContext;
 
@@ -41,9 +44,13 @@ public class SavedCountriesRvAdapter extends RecyclerView.Adapter<SavedCountries
 
     @Override
     public void onBindViewHolder(@NonNull SavedCountriesRvAdapter.CardViewObjectHolder holder, int position) {
-        String country = countryList.get(position);
+        /**
+         * creates country object from countrylist and binds the properties of the object
+         *
+         */
+        Country country = countryList.get(position);
 
-        holder.countryName.setText(country);
+        holder.countryName.setText(country.getCountryName());
 
         holder.checkBoxStar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -54,6 +61,15 @@ public class SavedCountriesRvAdapter extends RecyclerView.Adapter<SavedCountries
                 else{
 
                 }
+            }
+        });
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(mContext, CountryDetailActivity.class);
+                i.putExtra("CountryCode",country.getCode());
+                mContext.startActivity(i);
+
             }
         });
 

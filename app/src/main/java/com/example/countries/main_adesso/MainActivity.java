@@ -13,7 +13,7 @@ import com.example.countries.R;
 import com.example.countries.countries_adesso.CountryInfo;
 import com.example.countries.countries_adesso.Datum;
 import com.example.countries.retrofit_adesso.ApiUtils;
-import com.example.countries.retrofit_adesso.Countries;
+import com.example.countries.retrofit_adesso.Country;
 import com.example.countries.retrofit_adesso.CountriesDaoInterface;
 import com.example.countries.saved_countries_adesso.SavedCountriesActivity;
 
@@ -27,7 +27,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
     private RecyclerView rv;
     private CountriesDaoInterface countriesDıf;
-    private ArrayList<Countries> countryList;
+    private ArrayList<Country> countryList;
     private  CountriesRvAdapter adapter;
     private Button favMain;
 
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
         countryList = new ArrayList<>();
+
         favMain = findViewById(R.id.favMain);
             favMain.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             });
+
         countriesDıf = ApiUtils.getCountriesDaoInterface();
         adapter = new CountriesRvAdapter(MainActivity.this);
         rv.setAdapter(adapter);
@@ -58,7 +60,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     public void getCountry(){
+        /**
+         * Receives data from countriesDıf with retrofitand transfers it to adapter
+         */
 
         countriesDıf.getCountry(10).enqueue(new Callback<CountryInfo>() {
             @Override
@@ -66,10 +72,10 @@ public class MainActivity extends AppCompatActivity {
 
                  List<Datum> countriesList = response.body().getData();
 
-               List<Countries> countries = new ArrayList<Countries>();
+               List<Country> countries = new ArrayList<Country>();
 
                 for (int i = 0 ; i< countriesList.size() ; i++) {
-                    countries.add(new Countries(countriesList.get(i).getName(),countriesList.get(i).getCode()));
+                    countries.add(new Country(countriesList.get(i).getName(),countriesList.get(i).getCode()));
                 }
 
                 adapter.setData(countries);

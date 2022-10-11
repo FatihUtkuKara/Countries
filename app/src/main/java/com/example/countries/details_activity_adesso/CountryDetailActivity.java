@@ -17,6 +17,7 @@ import com.example.countries.details_adesso.CountryDetails;
 import com.example.countries.details_adesso.Data;
 import com.example.countries.retrofit_adesso.ApiUtils;
 import com.example.countries.retrofit_adesso.CountriesDaoInterface;
+import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,6 +56,9 @@ public class CountryDetailActivity extends AppCompatActivity {
 
 
         public void getCountryDetail() {
+            /**
+             * Receives data from detailDıf and transfers it to UI with populateUI method
+             */
 
             detailDıf.getCountryDetails(countryCode).enqueue(new Callback<CountryDetails>() {
                 @Override
@@ -76,10 +80,15 @@ public class CountryDetailActivity extends AppCompatActivity {
 
     }
 
+
     private void populateUI() {
-        //Although I could reach the image link, I could not display it in ImageView
-        // String Url = countrydetail.getFlagImageUri();
-        // Picasso.get().load(Url).into(flag);
+        /**
+         * Links data received with retrofit to visual elements
+         */
+
+        // Although I could reach the image link, I could not display it in ImageView
+         //String url = countrydetail.getFlagImageUri();
+         //Picasso.get().load(url).into(flag);
          Log.e("Image Url",countrydetail.getFlagImageUri());
 
         buttonInfo.setOnClickListener(new View.OnClickListener() {

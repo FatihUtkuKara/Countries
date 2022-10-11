@@ -1,6 +1,6 @@
 package com.example.countries.retrofit_adesso;
 
-public class Countries {
+public class Country {
     private String countryName;
     private String code;
 
@@ -27,7 +27,7 @@ public class Countries {
 
 
 
-    public Countries(String countryName,String code) {
+    public Country(String countryName, String code) {
         this.countryName = countryName;
         this.code = code;
 

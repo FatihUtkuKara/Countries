@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -15,15 +16,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.countries.details_activity_adesso.CountryDetailActivity;
 import com.example.countries.R;
-import com.example.countries.retrofit_adesso.Countries;
+import com.example.countries.retrofit_adesso.Country;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CountriesRvAdapter extends RecyclerView.Adapter<CountriesRvAdapter.CardViewObjectHolder> {
     private Context mContext;
-    private List<Countries> countryList = new ArrayList<Countries>();
-    public static List<String> newCountryList = new ArrayList<String>();
+    private List<Country> countryList = new ArrayList<Country>();
+    public static List<Country> savedCountryList = new ArrayList<Country>();
+    List<String> savedCountry = new ArrayList<String>() ;
 
     public CountriesRvAdapter(Context mContext) {
         this.mContext = mContext;
@@ -41,18 +43,39 @@ public class CountriesRvAdapter extends RecyclerView.Adapter<CountriesRvAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull CardViewObjectHolder holder, int position) {
-        Countries country = countryList.get(position);
+        /**
+         * creates country object from countrylist and binds the properties of the object
+         *
+         */
+        Country country = countryList.get(position);
 
         holder.countryName.setText(country.getCountryName());
 
         holder.checkBoxStar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    newCountryList.add(country.getCountryName());
+                /**
+                 * Checking whether the country is in the savedlist and adding data accordingly
+                 *
+                 */
+                if(isChecked) {
+                    for (int i = 0; i < savedCountryList.size(); i++) {
+
+                       if( country.getCountryName().equals(savedCountryList.get(i).getCountryName())){
+
+                           savedCountry.add(savedCountryList.get(i).getCountryName());
+                       }}
+                    if (savedCountry.contains(country.getCountryName())) {
+                        Toast.makeText(mContext, "This country is already exist in saved list", Toast.LENGTH_SHORT).show();
+
+                   }
+                     else {
+                        savedCountryList.add(country);
+                    }
+
                 }
                 else{
-                    newCountryList.remove(country.getCountryName());
+                    savedCountryList.remove(country);
                 }
             }
         });
@@ -74,7 +97,10 @@ public class CountriesRvAdapter extends RecyclerView.Adapter<CountriesRvAdapter.
         return countryList.size();
     }
 
-        public void setData(List<Countries> countryList){
+        public void setData(List<Country> countryList){
+            /**
+             *Specifies the data type to be added to the adapter and adds the added object to the list.
+             */
             this.countryList.clear();
             this.countryList.addAll(countryList);
             notifyDataSetChanged();
