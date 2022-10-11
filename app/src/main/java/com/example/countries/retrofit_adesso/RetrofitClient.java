@@ -1,4 +1,4 @@
-package com.example.countries.retrofit;
+package com.example.countries.retrofit_adesso;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

@@ -1,18 +1,21 @@
-package com.example.countries;
+package com.example.countries.main_adesso;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.countries.countries.Datum;
-import com.example.countries.retrofit.Countries;
+import com.example.countries.details_activity_adesso.CountryDetailActivity;
+import com.example.countries.R;
+import com.example.countries.retrofit_adesso.Countries;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +23,11 @@ import java.util.List;
 public class CountriesRvAdapter extends RecyclerView.Adapter<CountriesRvAdapter.CardViewObjectHolder> {
     private Context mContext;
     private List<Countries> countryList = new ArrayList<Countries>();
+    public static List<String> newCountryList = new ArrayList<String>();
 
-    public CountriesRvAdapter(Context mContext,List<Countries>countryList) {
+    public CountriesRvAdapter(Context mContext) {
         this.mContext = mContext;
-        this.countryList = countryList;
+
     }
 
 
@@ -41,10 +45,25 @@ public class CountriesRvAdapter extends RecyclerView.Adapter<CountriesRvAdapter.
 
         holder.countryName.setText(country.getCountryName());
 
+        holder.checkBoxStar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    newCountryList.add(country.getCountryName());
+                }
+                else{
+                    newCountryList.remove(country.getCountryName());
+                }
+            }
+        });
+
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext,"oldu",Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(mContext, CountryDetailActivity.class);
+                i.putExtra("CountryCode",country.getCode());
+                mContext.startActivity(i);
+
             }
         });
 
@@ -55,22 +74,24 @@ public class CountriesRvAdapter extends RecyclerView.Adapter<CountriesRvAdapter.
         return countryList.size();
     }
 
-       /* public void setData(List<Countries> countryList){
+        public void setData(List<Countries> countryList){
             this.countryList.clear();
-            this.countryList.add((Countries) countryList);
+            this.countryList.addAll(countryList);
             notifyDataSetChanged();
         }
- */
+
 
     public class CardViewObjectHolder extends RecyclerView.ViewHolder {
         public TextView countryName;
         public CardView cardView;
+        public CheckBox checkBoxStar;
 
 
         public CardViewObjectHolder(View view){
             super(view);
             cardView = view.findViewById(R.id.cardView);
             countryName = view.findViewById(R.id.countryName);
+            checkBoxStar = view.findViewById(R.id.checkBoxStar);
 
 
         }

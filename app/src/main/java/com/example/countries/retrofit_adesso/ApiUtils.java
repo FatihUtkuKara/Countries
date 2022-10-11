@@ -1,4 +1,4 @@
-package com.example.countries.retrofit;
+package com.example.countries.retrofit_adesso;
 
 public class ApiUtils {
 
