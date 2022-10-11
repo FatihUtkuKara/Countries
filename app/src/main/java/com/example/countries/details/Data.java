@@ -1,5 +1,5 @@
 
-package com.example.countries.details_adesso; ;
+package com.example.countries.details; ;
 
 import java.util.List;
 

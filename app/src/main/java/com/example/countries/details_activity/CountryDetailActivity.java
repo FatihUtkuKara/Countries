@@ -1,4 +1,4 @@
-package com.example.countries.details_activity_adesso;
+package com.example.countries.details_activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,11 +13,10 @@ import android.widget.TextView;
 
 
 import com.example.countries.R;
-import com.example.countries.details_adesso.CountryDetails;
-import com.example.countries.details_adesso.Data;
-import com.example.countries.retrofit_adesso.ApiUtils;
-import com.example.countries.retrofit_adesso.CountriesDaoInterface;
-import com.squareup.picasso.Picasso;
+import com.example.countries.details.CountryDetails;
+import com.example.countries.details.Data;
+import com.example.countries.retrofit.ApiUtils;
+import com.example.countries.retrofit.CountriesDaoInterface;
 
 import retrofit2.Call;
 import retrofit2.Callback;

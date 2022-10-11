@@ -1,4 +1,4 @@
-package com.example.countries.main_adesso;
+package com.example.countries.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,12 +10,12 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.countries.R;
-import com.example.countries.countries_adesso.CountryInfo;
-import com.example.countries.countries_adesso.Datum;
-import com.example.countries.retrofit_adesso.ApiUtils;
-import com.example.countries.retrofit_adesso.Country;
-import com.example.countries.retrofit_adesso.CountriesDaoInterface;
-import com.example.countries.saved_countries_adesso.SavedCountriesActivity;
+import com.example.countries.countries.CountryInfo;
+import com.example.countries.countries.Datum;
+import com.example.countries.retrofit.ApiUtils;
+import com.example.countries.retrofit.Country;
+import com.example.countries.retrofit.CountriesDaoInterface;
+import com.example.countries.saved_countries.SavedCountriesActivity;
 
 import java.util.ArrayList;
 import java.util.List;

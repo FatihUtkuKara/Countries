@@ -1,7 +1,7 @@
-package com.example.countries.retrofit_adesso;
+package com.example.countries.retrofit;
 
-import com.example.countries.countries_adesso.CountryInfo;
-import com.example.countries.details_adesso.CountryDetails;
+import com.example.countries.countries.CountryInfo;
+import com.example.countries.details.CountryDetails;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

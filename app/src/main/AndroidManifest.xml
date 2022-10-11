@@ -16,15 +16,15 @@
         android:theme="@style/Theme.Countries"
         tools:targetApi="31">
         <activity
-            android:name=".saved_countries_adesso.SavedCountriesActivity"
+            android:name=".saved_countries.SavedCountriesActivity"
             android:exported="false"
-            android:parentActivityName=".main_adesso.MainActivity"/>
+            android:parentActivityName=".main.MainActivity"/>
         <activity
-            android:name=".details_activity_adesso.CountryDetailActivity"
+            android:name=".details_activity.CountryDetailActivity"
             android:exported="false"
-            android:parentActivityName=".main_adesso.MainActivity"/>
+            android:parentActivityName=".main.MainActivity"/>
         <activity
-            android:name=".main_adesso.MainActivity"
+            android:name=".main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

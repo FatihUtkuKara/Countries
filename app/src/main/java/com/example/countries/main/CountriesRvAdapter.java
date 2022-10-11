@@ -1,4 +1,4 @@
-package com.example.countries.main_adesso;
+package com.example.countries.main;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,9 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.countries.details_activity_adesso.CountryDetailActivity;
+import com.example.countries.details_activity.CountryDetailActivity;
 import com.example.countries.R;
-import com.example.countries.retrofit_adesso.Country;
+import com.example.countries.retrofit.Country;
 
 import java.util.ArrayList;
 import java.util.List;

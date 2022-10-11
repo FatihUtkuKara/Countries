@@ -1,4 +1,4 @@
-package com.example.countries.retrofit_adesso;
+package com.example.countries.retrofit;
 
 public class Country {
     private String countryName;

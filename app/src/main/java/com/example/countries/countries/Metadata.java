@@ -1,5 +1,5 @@
 
-package com.example.countries.countries_adesso; ;
+package com.example.countries.countries; ;
 
 
 import com.google.gson.annotations.Expose;
