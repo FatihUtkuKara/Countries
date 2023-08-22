@@ -42,7 +42,7 @@ public class CountryDetailActivity extends AppCompatActivity {
         capital = findViewById(R.id.capital);
         callingCode = findViewById(R.id.callingCode);
         buttonInfo = findViewById(R.id.buttonInfo);
-          flag =  findViewById(R.id.flag);
+         // flag =  findViewById(R.id.flag);
 
         detailDıf = ApiUtils.getCountriesDaoInterface();
 
